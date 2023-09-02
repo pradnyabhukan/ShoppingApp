@@ -1,8 +1,11 @@
-import { useLocation, useParams } from "react-router-dom"
-import React, { useEffect, useState } from "react";
+import { Link, useLocation, useParams } from "react-router-dom"
+import React, { useContext, useEffect, useState } from "react";
 import { Card, Container, Row, Col, Button, Dropdown, InputGroup, Form } from 'react-bootstrap';
+import { CartContext } from "../App";
+
 
 export default function Products() {
+    const {cart, setCart} = useContext(CartContext);
     const [products, setProducts] = useState([]);
     const [searchVal, setSearchVal] = useState("");
     const id = useParams();
@@ -15,7 +18,6 @@ export default function Products() {
     }
     const getSortedProducts = (e) =>{
         const id = e.currentTarget.getAttribute("id");
-        console.log("called!", id)
         let sortedData = []
         if(id == 1){
             sortedData = ([...products].sort((a,b) => a.price - b.price));
@@ -26,19 +28,35 @@ export default function Products() {
     }
 
     const handleSearchSubmit = async() =>{
-        console.log("submit clicked")
-        console.log(searchVal);
         const url = `https://api.escuelajs.co/api/v1/products/?title=${searchVal}&categoryId=${id.id}`;
         const data = await fetch(url);
         const filterData = await data.json();
         setProducts(filterData);
     }
+
+    const addItemToCart = (product)=>{
+        
+        const exists = cart.find((item)=> item.product === product);
+        if(exists){
+            let changeItem = cart.map((item)=>{
+                if(product === item.product){
+                        return { ...item, qty: item.qty + 1}
+                }else{
+                    return item;
+                }
+            });
+            setCart(changeItem);
+        }else{
+            setCart([...cart, {product: product, qty : 1}]);
+        }
+        
+    }
+
     useEffect(()=>{
         getProducts();
         
     },[]);
 
-    console.log(products);    
     return(
         <Container>
             <Row style={{padding: "2rem"}}>
@@ -67,6 +85,9 @@ export default function Products() {
                     </Dropdown.Menu>
                 </Dropdown>
                 </Col>
+                <Col>
+                    <Link to="/cart">Go to Cart</Link>
+                </Col>
             </Row>
             
             <Row>
@@ -79,7 +100,7 @@ export default function Products() {
                                     <Card.Text >{product?.description}</Card.Text>
                                     <Row>
                                         <Col><Card.Text>${product?.price}</Card.Text></Col>
-                                        <Col><Button>Add item</Button></Col>    
+                                        <Col><Button onClick={()=>{addItemToCart(product)}}>Add item</Button></Col>    
                                     </Row>
                             </Card.Body>
                         </Card>
