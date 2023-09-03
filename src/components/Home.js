@@ -20,7 +20,7 @@ export default function Home(){
                         <h1>Shopping App</h1>
                     </Col>
                     <Col xs={12} md={6} className="text-end">
-                        <Link to="ShoppingApp/cart"><h4>Cart</h4></Link>
+                        <Link to="/cart"><h4>Cart</h4></Link>
                     </Col>
                 </Row>
                 <Row>

@@ -86,7 +86,7 @@ export default function Products() {
                 </Dropdown>
                 </Col>
                 <Col>
-                    <Link to="/ShoppingApp/cart">Go to Cart</Link>
+                    <Link to="/cart">Go to Cart</Link>
                 </Col>
             </Row>
             
