@@ -44,7 +44,7 @@ export default function Cart(){
             <Row>
                 <Col><h1>Cart</h1></Col>
                 <Col>
-                    <Link to="/">Home</Link>
+                    <Link to="/ShoppingApp/">Home</Link>
                 </Col>
             </Row>
                 <Table>

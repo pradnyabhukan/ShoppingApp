@@ -20,7 +20,7 @@ export default function Home(){
                         <h1>Shopping App</h1>
                     </Col>
                     <Col xs={12} md={6} className="text-end">
-                        <Link to="/cart"><h4>Cart</h4></Link>
+                        <Link to="ShoppingApp/cart"><h4>Cart</h4></Link>
                     </Col>
                 </Row>
                 <Row>
@@ -28,7 +28,7 @@ export default function Home(){
                     <Col key={category.id} style={{padding : "1rem"}}>
                         <Card className="cards" style={{ backgroundImage : `url(${category.image})` }}>
                             <Card.Body>
-                                <Link to={`/products/${category.id}`} state={{ name: category.name }}>
+                                <Link to={`products/${category.id}`} state={{ name: category.name }}>
                                     <Card.Title>{category.name}</Card.Title>
                                 </Link>
                             </Card.Body>
