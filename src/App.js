@@ -14,9 +14,9 @@ function App() {
     <BrowserRouter>
       <CartContext.Provider value={{cart, setCart}}>
         <Routes>
-            <Route path="/ShoppingApp/" element={<Home/>}/>
-            <Route path="/ShoppingApp/products/:id" element={<Products/>}/>
-            <Route path="/ShoppingApp/cart" element={<Cart/>}/>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/products/:id" element={<Products/>}/>
+            <Route path="/cart" element={<Cart/>}/>
           </Routes>
       </CartContext.Provider>
     </BrowserRouter>
