@@ -31,7 +31,6 @@ export default function Cart(){
     }
 
     const handleDelete = (index) =>{
-        console.log(cart, " ", index)
         const temp = [...cart];
         temp.splice(index,1);
         setCart(temp);
@@ -68,7 +67,7 @@ export default function Cart(){
                                     <td>
                                         <Button variant="outline-primary" id="add" onClick={(e)=>handleQty(item,e)}>+</Button>
                                         {item.qty}
-                                        <Button id="sub" variant="outline-primary" disabled={item.qty === 0} onClick={(e)=>handleQty(item,e)}>-</Button>
+                                        <Button id="sub" variant="outline-primary" disabled={item.qty === 0} onClick={(e)=>handleQty(item, e)}>-</Button>
                                     </td>
                                     <td>
                                         <Button onClick={()=>{handleDelete(i)}}>Delete</Button>
